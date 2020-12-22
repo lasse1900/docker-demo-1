@@ -1,7 +1,12 @@
-FROM geerlingguy/php-apache:latest
+# FROM geerlingguy/php-apache:latest
 
 # RUN rm/var/www/html/index.html 
-COPY index.php /var/www/html/index.php
+# COPY index.php /var/www/html/index.php
 
-COPY ./ports.conf /etc/apache2/ports.conf
-COPY ./apache.conf /etc/apache2/sites-enabled/000-default.conf
+# COPY ./ports.conf /etc/apache2/ports.conf
+# COPY ./apache.conf /etc/apache2/sites-enabled/000-default.conf
+
+FROM php:7.2-apache
+COPY index.php /var/www/html/index.php
+EXPOSE 80
+CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
